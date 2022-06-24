@@ -1,34 +1,33 @@
-#define ir1 4
-#define ir2 11
-#define ir3 12
+#define irEsquerda A0
+#define irCentro A1
+#define irDireita A3
 #define pinMotorEn1 5 //en = enable
 #define pinMotorEn2 6 //sao usadas para controlar a velocidade
 #define pinMotorA1 7
 #define pinMotorA2 8
-#define pinMotorB1 9
+#define pinMotorB1
 #define pinMotorB2 10
 
-int sensor1, sensor2, sensor3 = 0;
+int esquerda, centro, direita = 0;
 int velMotorA, velMotorB = 0;
 int somaConst = 0;
 char direcao = "r";
 
 void lerSensores(){
-  sensor1 = digitalRead(ir1); 
-  sensor2 = digitalRead(ir2); 
-  sensor3 = digitalRead(ir3);
+  esquerda = analogRead(irEsquerda); 
+  centro = analogRead(irCentro); 
+  direita = analogRead(irDireita);
 
-  /*      debugging
-  Serial.print("Sensor 1 = ");
-  Serial.print(valorSensor1);
+  /*      debug
+  Serial.println("esq = ");
+  Serial.print(esquerda);
   Serial.print("    ");
-  Serial.print("Sensor 2 = ");
-  Serial.print(valorSensor2);
+  Serial.print("centro = ");
+  Serial.print(centro);
   Serial.print("    ");
-  Serial.print("Sensor 3 = ");
-  Serial.print(valorSensor3);
+  Serial.print("dir = ");
+  Serial.print(direita);
   */
-
 }
 
 void mover(char direcao){
@@ -108,9 +107,9 @@ void movimentos(){
 }
 
 void setup(){
-  pinMode(ir1, INPUT);
-  pinMode(ir2, INPUT);
-  pinMode(ir3, INPUT);
+  pinMode(irEsquerda, INPUT);
+  pinMode(irCentro, INPUT);
+  pinMode(irDireita, INPUT);
   pinMode(pinMotorA1, OUTPUT);
   pinMode(pinMotorA2, OUTPUT);
   pinMode(pinMotorB1, OUTPUT);
